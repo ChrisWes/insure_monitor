@@ -17,7 +17,7 @@ import smtplib
 import sqlite3
 import sys
 import time
-from datetime import date, datetime
+from datetime import date, datetime, timedelta
 from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
@@ -65,6 +65,19 @@ ROLE_KEYWORDS = [
     "chief information", "chief technology", "chief data",
 ]
 
+# NewsAPI
+NEWS_API_BASE       = "https://newsapi.org/v2/everything"
+NEWS_DAILY_BUDGET   = 95        # hard cap; leaves 5 of 100 free-tier calls as headroom
+NEWS_PAGE_SIZE      = 100       # max results per page
+NEWS_LOOKBACK_DAYS  = 30
+NEWS_SLEEP_SECONDS  = 1.0       # polite delay between calls
+
+NEWS_KEYWORDS = [
+    "technology", "digital", "transformation", "system", "platform",
+    "software", "data", "cyber", "acquisition", "merger", "partnership",
+    "investment", "regulatory", "compliance", "appointed", "restructure",
+]
+
 # Signal scoring thresholds
 SIGNAL_HIGH   = 5
 SIGNAL_MEDIUM = 2
@@ -85,7 +98,10 @@ JOBS_DB_PATH     = DATA_DIR / "jobs_baseline.db"
 TODAY             = date.today().isoformat()
 OFFICER_DIGEST    = OUTPUT_DIR / f"officer_changes_{TODAY}.csv"
 JOBS_DIGEST       = OUTPUT_DIR / f"job_changes_{TODAY}.csv"
+NEWS_DIGEST       = OUTPUT_DIR / f"news_changes_{TODAY}.csv"
 LOG_FILE          = LOGS_DIR / f"intelligence_monitor_{TODAY}.log"
+
+NEWS_DB_PATH      = DATA_DIR / "news_baseline.db"
 
 OFFICER_COLUMNS = [
     "change_type", "company_number", "company_name",
@@ -95,6 +111,11 @@ JOBS_COLUMNS = [
     "change_type", "company_number", "company_name",
     "job_title", "job_location", "salary_min", "salary_max",
     "posted_date", "date_detected", "lloyds_managing_agent", "monitoring_status",
+]
+NEWS_COLUMNS = [
+    "change_type", "company_number", "company_name",
+    "article_title", "article_source", "article_published",
+    "article_url", "date_detected",
 ]
 
 
@@ -274,6 +295,71 @@ def upsert_jobs_firm(conn, company_number, name, ts):
 
 
 # ---------------------------------------------------------------------------
+# NEWS DATABASE
+# ---------------------------------------------------------------------------
+def init_news_db(conn: sqlite3.Connection) -> None:
+    conn.executescript("""
+        CREATE TABLE IF NOT EXISTS news_processed_firms (
+            company_number TEXT PRIMARY KEY,
+            company_name   TEXT,
+            last_checked   TIMESTAMP
+        );
+        CREATE TABLE IF NOT EXISTS news_articles (
+            id                INTEGER PRIMARY KEY AUTOINCREMENT,
+            company_number    TEXT NOT NULL,
+            company_name      TEXT,
+            article_url       TEXT NOT NULL UNIQUE,
+            article_title     TEXT,
+            article_source    TEXT,
+            article_published DATE,
+            first_seen        TIMESTAMP,
+            is_active         INTEGER NOT NULL DEFAULT 1
+        );
+    """)
+    conn.commit()
+
+
+def news_is_first_run(conn: sqlite3.Connection, company_number: str) -> bool:
+    return conn.execute(
+        "SELECT last_checked FROM news_processed_firms WHERE company_number = ?",
+        (company_number,),
+    ).fetchone() is None
+
+
+def get_baseline_articles(conn: sqlite3.Connection, company_number: str) -> Dict[str, Dict]:
+    rows = conn.execute(
+        "SELECT article_url, article_title, article_source, article_published, first_seen "
+        "FROM news_articles WHERE company_number = ? AND is_active = 1",
+        (company_number,),
+    ).fetchall()
+    return {r["article_url"]: dict(r) for r in rows}
+
+
+def upsert_article(conn, company_number, company_name, article, ts):
+    conn.execute(
+        """INSERT INTO news_articles
+           (company_number, company_name, article_url, article_title, article_source,
+            article_published, first_seen, is_active)
+           VALUES (?, ?, ?, ?, ?, ?, ?, 1)
+           ON CONFLICT(article_url) DO UPDATE SET is_active = 1""",
+        (
+            company_number, company_name, article["article_url"], article["article_title"],
+            article["article_source"], article.get("article_published"), ts,
+        ),
+    )
+
+
+def upsert_news_firm(conn, company_number, name, ts):
+    conn.execute(
+        """INSERT INTO news_processed_firms (company_number, company_name, last_checked)
+           VALUES (?, ?, ?)
+           ON CONFLICT(company_number) DO UPDATE SET
+               company_name = excluded.company_name, last_checked = excluded.last_checked""",
+        (company_number, name, ts),
+    )
+
+
+# ---------------------------------------------------------------------------
 # RATE LIMITERS
 # ---------------------------------------------------------------------------
 class RateLimiter:
@@ -357,13 +443,26 @@ _STRIP_FOR_ADZUNA = re.compile(
     r"financial|life|general|mutual|assurance|society|association|of|and)\b",
     re.IGNORECASE,
 )
+# For company-match validation: strip only legal suffixes, keep industry words so
+# "HIVE UNDERWRITERS" stays distinct from "HIVE RECRUITMENT".
+_STRIP_LEGAL_ONLY = re.compile(
+    r"\b(limited|ltd|llp|plc|lp|inc)\b",
+    re.IGNORECASE,
+)
 _WS = re.compile(r"\s+")
 
 
 def make_search_name(registered_name: str) -> str:
+    """Short trading-style name for the Adzuna 'what=' query parameter."""
     cleaned = _WS.sub(" ", _STRIP_FOR_ADZUNA.sub(" ", registered_name)).strip()
     words = [w for w in cleaned.split() if len(w) > 1]
     return " ".join(words[:2]) if words else registered_name
+
+
+def make_validation_name(registered_name: str) -> str:
+    """Fuller name (legal suffixes stripped, industry words kept) for company match validation."""
+    cleaned = _WS.sub(" ", _STRIP_LEGAL_ONLY.sub(" ", registered_name)).strip()
+    return cleaned.lower()
 
 
 def build_adzuna_session() -> requests.Session:
@@ -378,7 +477,8 @@ def matches_keywords(title: str, description: str) -> bool:
 
 
 def fetch_adzuna_jobs(session, app_id, app_key, firm_name, limiter, logger) -> Optional[List[Dict]]:
-    search_name = make_search_name(firm_name)
+    search_name     = make_search_name(firm_name)
+    validation_name = make_validation_name(firm_name)  # fuller name used for company match
     relevant, page = [], 1
     retry_counts: Dict[Tuple, int] = {}
 
@@ -422,7 +522,10 @@ def fetch_adzuna_jobs(session, app_id, app_key, firm_name, limiter, logger) -> O
         data = resp.json()
         for job in data.get("results", []):
             company_display = job.get("company", {}).get("display_name", "")
-            if fuzz.token_set_ratio(search_name.lower(), company_display.lower()) < COMPANY_MATCH_THRESHOLD:
+            # token_sort_ratio: handles word-order differences without treating subsets
+            # as perfect matches (unlike token_set_ratio). Compared against the fuller
+            # validation_name so "hive underwriters" stays distinct from "hive recruitment".
+            if fuzz.token_sort_ratio(validation_name, company_display.lower()) < COMPANY_MATCH_THRESHOLD:
                 continue
             title = job.get("title", "")
             if not matches_keywords(title, job.get("description", "")):
@@ -444,6 +547,88 @@ def fetch_adzuna_jobs(session, app_id, app_key, firm_name, limiter, logger) -> O
         page += 1
 
     return relevant
+
+
+# ---------------------------------------------------------------------------
+# NEWSAPI
+# ---------------------------------------------------------------------------
+def article_matches_keywords(title: str, description: str) -> bool:
+    text = f"{title} {description}".lower()
+    return any(kw.lower() in text for kw in NEWS_KEYWORDS)
+
+
+def fetch_newsapi(
+    session: requests.Session, api_key: str, firm_name: str, logger: logging.Logger
+) -> Tuple[Optional[List[Dict]], int]:
+    """Returns (relevant_articles, pages_fetched). On unrecoverable error returns (None, pages_fetched)."""
+    from_date = (date.today() - timedelta(days=NEWS_LOOKBACK_DAYS)).isoformat()
+    query = f'"{firm_name}"'
+    relevant: List[Dict] = []
+    page = 1
+    pages_fetched = 0
+
+    while True:
+        time.sleep(NEWS_SLEEP_SECONDS)
+        try:
+            resp = session.get(
+                NEWS_API_BASE,
+                params={
+                    "apiKey":       api_key,
+                    "q":            query,
+                    "language":     "en",
+                    "from":         from_date,
+                    "sortBy":       "publishedAt",
+                    "pageSize":     NEWS_PAGE_SIZE,
+                    "page":         page,
+                },
+                timeout=(5, 20),
+            )
+        except requests.RequestException as exc:
+            logger.error("  NewsAPI request failed (page %d): %s", page, exc)
+            return None, pages_fetched
+
+        pages_fetched += 1
+
+        if resp.status_code == 426:
+            logger.error("  NewsAPI: free-tier upgrade required (426)")
+            return None, pages_fetched
+        if resp.status_code == 429:
+            logger.warning("  NewsAPI 429 — sleeping 60s")
+            time.sleep(60)
+            pages_fetched -= 1  # don't count the failed attempt
+            continue
+        if resp.status_code != 200:
+            logger.error("  NewsAPI HTTP %d for '%s'", resp.status_code, firm_name)
+            return None, pages_fetched
+
+        data = resp.json()
+        if data.get("status") != "ok":
+            logger.error("  NewsAPI error: %s", data.get("message", "unknown"))
+            return None, pages_fetched
+
+        for art in data.get("articles", []):
+            title = art.get("title") or ""
+            desc  = art.get("description") or ""
+            if not article_matches_keywords(title, desc):
+                continue
+            pub = (art.get("publishedAt") or "")[:10]
+            url = art.get("url", "")
+            if not url:
+                continue
+            relevant.append({
+                "article_url":       url,
+                "article_title":     title,
+                "article_source":    (art.get("source") or {}).get("name", ""),
+                "article_published": pub,
+            })
+
+        total_results  = data.get("totalResults", 0)
+        fetched_so_far = page * NEWS_PAGE_SIZE
+        if not data.get("articles") or fetched_so_far >= total_results:
+            break
+        page += 1
+
+    return relevant, pages_fetched
 
 
 # ---------------------------------------------------------------------------
@@ -538,7 +723,32 @@ def detect_job_changes(
     return changes
 
 
-def signal_score(officer_changes: List[Dict], job_changes: List[Dict]) -> Tuple[str, int]:
+def detect_news_changes(
+    company_number: str, company_name: str,
+    baseline_urls: Dict[str, Dict], current_articles: List[Dict],
+    first_run: bool, logger: logging.Logger,
+) -> List[Dict]:
+    if first_run:
+        return []
+    changes = []
+    for art in current_articles:
+        if art["article_url"] in baseline_urls:
+            continue
+        logger.info("  NEWS NEW: %s | %s", art["article_source"], art["article_title"][:60])
+        changes.append({
+            "change_type":       "New Article",
+            "company_number":    company_number,
+            "company_name":      company_name,
+            "article_title":     art["article_title"],
+            "article_source":    art["article_source"],
+            "article_published": art["article_published"],
+            "article_url":       art["article_url"],
+            "date_detected":     TODAY,
+        })
+    return changes
+
+
+def signal_score(officer_changes: List[Dict], job_changes: List[Dict], news_changes: Optional[List[Dict]] = None) -> Tuple[str, int]:
     score = 0
     for c in officer_changes:
         if c["change_type"] in ("New Appointment", "Resignation"):
@@ -547,6 +757,8 @@ def signal_score(officer_changes: List[Dict], job_changes: List[Dict]) -> Tuple[
     score += len(new_jobs)
     if len(new_jobs) >= MULTI_POSTING_THRESHOLD:
         score += 2
+    new_articles = [n for n in (news_changes or []) if n["change_type"] == "New Article"]
+    score += min(2, len(new_articles))
     label = "HIGH" if score >= SIGNAL_HIGH else ("MEDIUM" if score >= SIGNAL_MEDIUM else "LOW")
     return label, score
 
@@ -575,6 +787,7 @@ def write_digest(path: Path, columns: List[str], rows: List[Dict],
 def send_email(
     officer_changes: List[Dict],
     job_changes: List[Dict],
+    news_changes: List[Dict],
     company_activity: Dict[str, Dict],
     stats: Dict,
     logger: logging.Logger,
@@ -594,13 +807,17 @@ def send_email(
         return
 
     recipients = [a.strip() for a in email_to_raw.split(",") if a.strip()]
-    total_changes = stats["officer_new"] + stats["officer_resigned"] + stats["job_new"] + stats["job_disappeared"]
+    total_changes = (
+        stats["officer_new"] + stats["officer_resigned"]
+        + stats["job_new"] + stats["job_disappeared"]
+        + stats["news_new"]
+    )
 
     if total_changes:
         subject = (
             f"Intelligence Monitor: {total_changes} signal(s) — {TODAY}  "
             f"({stats['officer_new']} appointments, {stats['officer_resigned']} resignations, "
-            f"{stats['job_new']} new postings)"
+            f"{stats['job_new']} new postings, {stats['news_new']} news articles)"
         )
     else:
         subject = f"Intelligence Monitor: No changes — {TODAY}"
@@ -612,6 +829,7 @@ def send_email(
         f"Officer changes      : {stats['officer_new']} new appointments, "
         f"{stats['officer_resigned']} resignations",
         f"Job posting changes  : {stats['job_new']} new, {stats['job_disappeared']} disappeared",
+        f"News articles        : {stats['news_new']} new",
         f"API errors (CH)      : {stats['ch_errors']}",
         f"API errors (Adzuna)  : {stats['adzuna_errors']}",
         "",
@@ -664,6 +882,18 @@ def send_email(
                 for j in gone_jobs:
                     lines.append(f"    {j['change_type'].upper()}  {j['job_title']}")
 
+            new_articles = [
+                n for n in activity.get("news_changes", [])
+                if n["change_type"] == "New Article"
+            ]
+            if new_articles:
+                lines.append(f"  News  ({len(new_articles)} new article(s)):")
+                for n in new_articles:
+                    lines.append(
+                        f'    - "{n["article_title"]}"'
+                        f'  --  {n["article_source"]}, {n["article_published"]}'
+                    )
+
         lines.append("")
 
     lines.append("Full digests attached.")
@@ -675,7 +905,7 @@ def send_email(
     msg["Subject"] = subject
     msg.attach(MIMEText(body, "plain"))
 
-    for digest_path in (OFFICER_DIGEST, JOBS_DIGEST):
+    for digest_path in (OFFICER_DIGEST, JOBS_DIGEST, NEWS_DIGEST):
         if digest_path.exists():
             with digest_path.open("rb") as fh:
                 part = MIMEBase("application", "octet-stream")
@@ -750,14 +980,15 @@ def main() -> None:
     all_officer_changes: List[Dict] = []
     all_job_changes:     List[Dict] = []
     company_activity:    Dict[str, Dict] = {}
+    firm_buffer:         Dict[str, Dict] = {}
 
-    total_firms    = len(firms)
-    ch_errors      = 0
-    adzuna_errors  = 0
-    officer_new    = 0
+    total_firms      = len(firms)
+    ch_errors        = 0
+    adzuna_errors    = 0
+    officer_new      = 0
     officer_resigned = 0
-    job_new        = 0
-    job_disappeared = 0
+    job_new          = 0
+    job_disappeared  = 0
 
     for idx, row in enumerate(firms, start=1):
         ch_num = row.get(FIRMS_NUMBER_COLUMN, "").strip()
@@ -835,28 +1066,121 @@ def main() -> None:
             else:
                 job_disappeared += 1
 
-        if o_changes or j_changes:
-            signal, score = signal_score(o_changes, j_changes)
-            director_count = get_active_director_count(officer_conn, ch_num)
-            active_job_count = len([j for j in (current_jobs or [])]) if current_jobs is not None else 0
-            company_activity[ch_num] = {
-                "name":            name,
-                "agent":           row.get(FIRMS_AGENT_COLUMN, ""),
-                "officer_changes": o_changes,
-                "job_changes":     j_changes,
-                "director_count":  director_count,
-                "active_job_count": active_job_count,
-                "signal":          signal,
-                "score":           score,
-            }
+        firm_buffer[ch_num] = {
+            "row":             row,
+            "name":            name,
+            "o_changes":       o_changes,
+            "j_changes":       j_changes,
+            "director_count":  get_active_director_count(officer_conn, ch_num),
+            "active_job_count": len(current_jobs) if current_jobs is not None else 0,
+        }
 
     officer_conn.close()
     jobs_conn.close()
+
+    # -------------------------------------------------------------------------
+    # PASS 2 — NEWS (NewsAPI, priority-sorted, daily budget capped)
+    # -------------------------------------------------------------------------
+    news_api_key    = os.getenv("NEWS_API_KEY", "").strip()
+    all_news_changes: List[Dict] = []
+    news_calls_used = 0
+    news_new        = 0
+
+    if not news_api_key:
+        logger.warning("NEWS_API_KEY not set — skipping news monitoring")
+    else:
+        news_conn = sqlite3.connect(NEWS_DB_PATH)
+        news_conn.row_factory = sqlite3.Row
+        init_news_db(news_conn)
+        news_session = requests.Session()
+        news_session.headers.update({"Accept": "application/json"})
+
+        def _news_priority(ch_num: str) -> int:
+            buf = firm_buffer.get(ch_num, {})
+            has_agent   = bool((buf.get("row") or {}).get(FIRMS_AGENT_COLUMN, ""))
+            has_signals = bool(buf.get("o_changes") or buf.get("j_changes"))
+            if has_agent and has_signals:
+                return 0
+            if has_agent:
+                return 1
+            if has_signals:
+                return 2
+            return 3
+
+        sorted_ch_nums = sorted(firm_buffer.keys(), key=_news_priority)
+        total_to_check = len(sorted_ch_nums)
+
+        for pos, ch_num in enumerate(sorted_ch_nums):
+            if news_calls_used >= NEWS_DAILY_BUDGET:
+                logger.warning(
+                    "News API daily budget reached (%d calls used) — %d firm(s) skipped",
+                    news_calls_used, total_to_check - pos,
+                )
+                break
+            if news_calls_used >= int(NEWS_DAILY_BUDGET * 0.9):
+                logger.warning(
+                    "News API budget at 90%% (%d/%d calls used)", news_calls_used, NEWS_DAILY_BUDGET
+                )
+
+            buf  = firm_buffer[ch_num]
+            name = buf["name"]
+            ts   = datetime.utcnow().isoformat()
+
+            n_first  = news_is_first_run(news_conn, ch_num)
+            articles, pages = fetch_newsapi(news_session, news_api_key, name, logger)
+            news_calls_used += pages
+
+            if articles is None:
+                continue
+
+            for art in articles:
+                upsert_article(news_conn, ch_num, name, art, ts)
+            upsert_news_firm(news_conn, ch_num, name, ts)
+            news_conn.commit()
+
+            if n_first:
+                logger.info("  News: first run (%d relevant article(s) baselined)", len(articles))
+                n_changes: List[Dict] = []
+            else:
+                baseline_urls = get_baseline_articles(news_conn, ch_num)
+                n_changes = detect_news_changes(ch_num, name, baseline_urls, articles, n_first, logger)
+                if not n_changes:
+                    logger.info("  News: no new articles (%d relevant found)", len(articles))
+
+            firm_buffer[ch_num]["n_changes"] = n_changes
+            all_news_changes.extend(n_changes)
+            news_new += len(n_changes)
+
+        news_conn.close()
+
+    # -------------------------------------------------------------------------
+    # BUILD company_activity from buffered per-firm results
+    # -------------------------------------------------------------------------
+    for ch_num, buf in firm_buffer.items():
+        o_changes = buf["o_changes"]
+        j_changes = buf["j_changes"]
+        n_changes = buf.get("n_changes", [])
+        if not (o_changes or j_changes or n_changes):
+            continue
+        signal, score = signal_score(o_changes, j_changes, n_changes)
+        company_activity[ch_num] = {
+            "name":             buf["name"],
+            "agent":            (buf["row"] or {}).get(FIRMS_AGENT_COLUMN, ""),
+            "officer_changes":  o_changes,
+            "job_changes":      j_changes,
+            "news_changes":     n_changes,
+            "director_count":   buf["director_count"],
+            "active_job_count": buf["active_job_count"],
+            "signal":           signal,
+            "score":            score,
+        }
 
     write_digest(OFFICER_DIGEST, OFFICER_COLUMNS, all_officer_changes,
                  "No officer changes detected", logger)
     write_digest(JOBS_DIGEST, JOBS_COLUMNS, all_job_changes,
                  "No job changes detected", logger)
+    write_digest(NEWS_DIGEST, NEWS_COLUMNS, all_news_changes,
+                 "No news articles detected", logger)
 
     stats = {
         "firms_checked":    total_firms,
@@ -864,6 +1188,7 @@ def main() -> None:
         "officer_resigned": officer_resigned,
         "job_new":          job_new,
         "job_disappeared":  job_disappeared,
+        "news_new":         news_new,
         "ch_errors":        ch_errors,
         "adzuna_errors":    adzuna_errors,
     }
@@ -877,11 +1202,13 @@ def main() -> None:
     logger.info("Resignations         : %d", officer_resigned)
     logger.info("New job postings     : %d", job_new)
     logger.info("Disappeared postings : %d", job_disappeared)
+    logger.info("New news articles    : %d", news_new)
+    logger.info("News API calls used  : %d / %d", news_calls_used, NEWS_DAILY_BUDGET)
     logger.info("CH API errors        : %d", ch_errors)
     logger.info("Adzuna API errors    : %d", adzuna_errors)
     logger.info("=" * 60)
 
-    send_email(all_officer_changes, all_job_changes, company_activity, stats, logger)
+    send_email(all_officer_changes, all_job_changes, all_news_changes, company_activity, stats, logger)
 
 
 if __name__ == "__main__":

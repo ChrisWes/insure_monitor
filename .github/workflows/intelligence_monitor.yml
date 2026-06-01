@@ -33,6 +33,7 @@ jobs:
           CH_API_KEY:      ${{ secrets.CH_API_KEY }}
           ADZUNA_APP_ID:   ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY:  ${{ secrets.ADZUNA_APP_KEY }}
+          NEWS_API_KEY:    ${{ secrets.NEWS_API_KEY }}
           SMTP_HOST:       ${{ secrets.SMTP_HOST }}
           SMTP_PORT:       ${{ secrets.SMTP_PORT }}
           SMTP_USERNAME:   ${{ secrets.SMTP_USERNAME }}

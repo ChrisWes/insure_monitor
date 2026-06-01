@@ -1126,6 +1126,7 @@ def main() -> None:
             name = buf["name"]
             ts   = datetime.utcnow().isoformat()
 
+            logger.info("[NEWS %d/%d] %s  (%s)", pos + 1, total_to_check, name, ch_num)
             n_first  = news_is_first_run(news_conn, ch_num)
             articles, pages = fetch_newsapi(news_session, news_api_key, name, logger)
             news_calls_used += pages

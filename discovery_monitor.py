@@ -43,18 +43,34 @@ FEEDS = [
     # General UK tech
     {"name": "TechCrunch",           "url": "https://techcrunch.com/feed"},
     {"name": "The Register",         "url": "https://www.theregister.com/headlines.atom"},
-    # Add further feeds here — each entry needs "name" and "url" keys
+    # Insurance and reinsurance trade press
+    {"name": "Insurance Business UK", "url": "https://www.insurancebusinessmag.com/uk/rss"},
+    {"name": "Artemis",               "url": "https://www.artemis.bm/news/feed/"},
+    {"name": "Reinsurance News",      "url": "https://www.reinsurancene.ws/feed/"},
+    # Fintech trade press
+    {"name": "The Fintech Times",     "url": "https://thefintechtimes.com/feed/"},
+    {"name": "FinTech Futures",       "url": "https://www.fintechfutures.com/feed/"},
+    {"name": "FF News",               "url": "https://ffnews.com/feed/"},
+    {"name": "FinTech Global",        "url": "https://fintech.global/feed"},
+    {"name": "UKTN",                  "url": "https://www.uktech.news/fintech/feed"},
 ]
 
 # ---------------------------------------------------------------------------
 # TRIGGER KEYWORDS — configurable list
 # ---------------------------------------------------------------------------
 TRIGGER_KEYWORDS = [
-    "raises", "funding", "investment", "series A", "series B", "series C",
-    "capital", "acquires", "acquisition", "merger", "appoints", "appointed",
-    "launches", "expands", "expansion", "digital transformation",
-    "technology platform", "insurtech", "fintech", "modernisation",
-    "modernization", "partnership", "strategic review",
+    # Funding and capital events — specific enough to indicate corporate activity
+    "raises", "funding round", "series A", "series B", "series C",
+    "seed funding", "venture capital", "growth capital", "private equity",
+    # M&A and structural events
+    "acquires", "acquisition", "merger", "management buyout", "buys",
+    # People and strategy signals
+    "appoints", "appointed", "strategic review",
+    # Sector-specific signals (inherently relevant to our market)
+    "insurtech", "fintech",
+    # Transformation signals — compound phrases only to avoid noise
+    "digital transformation", "technology platform", "core system",
+    "modernisation", "modernization", "legacy replacement",
 ]
 
 # ---------------------------------------------------------------------------

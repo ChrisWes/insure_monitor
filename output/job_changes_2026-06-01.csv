@@ -1,117 +1,225 @@
 ﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,lloyds_managing_agent,monitoring_status
-New Posting,SC286833,STANDARD LIFE ASSURANCE LIMITED,Programme Manager,"Portchester, Fareham",51024.36,51024.36,2026-04-25,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive/Account Managers,"Pontyclun, Rhondda Cynon Taff",41448.14,41448.14,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales & Service Consultant,"Manchester, Greater Manchester",40884.43,40884.43,2026-05-25,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales & Service Consultant,"Manchester, Greater Manchester",40898.89,40898.89,2026-05-30,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Brierley Hill, West Midlands",36407.54,36407.54,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Chelmsford, Essex",40164.68,40164.68,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Brierley Hill, West Midlands",36099.66,36099.66,2026-06-01,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Customer Service and Sales consultant,"Wakefield, West Yorkshire",37611.02,37611.02,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive - Major Risks,"London, UK",56758.13,56758.13,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Web Content Editor,"Glasgow, Scotland",44290.12,44290.12,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales Advisor,"Mansfield, Nottinghamshire",41070.13,41070.13,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Sales Development Executive - Housing,"Chelmsford, Essex",49721.55,49721.55,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Brierley Hill, West Midlands",36252.8,36252.8,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Revenue Retention & Growth Tender Manager,"Chelmsford, Essex",51500.52,51500.52,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Sheffield, South Yorkshire",48299.03,48299.03,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Technical Assistant Manager - Aerospace,"London, UK",56170.32,56170.32,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Corporate Account Manager - Charities,"Birmingham, West Midlands",49442.29,49442.29,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales and Renewals Consultant,"Wakefield, West Yorkshire",42536.88,42536.88,2026-05-17,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Brierley Hill, West Midlands",40372.79,40372.79,2026-05-20,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Aviation Insurance Broker,"London, UK",56995.33,56995.33,2026-05-22,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Claims Handler,"Belfast, Northern Ireland",41339.86,41339.86,2026-05-24,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Claims Handler,"Leicester, Leicestershire",43815.89,43815.89,2026-05-24,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Claims Executive,"London, UK",46168.9,46168.9,2026-05-28,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,"Senior Project Manager, Marketing","Glasgow, Scotland",49507.59,49507.59,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Business Development Executive,"Glasgow, Scotland",45157.63,45157.63,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Compliance Coordinator - Appointed Representatives and Delegated Authorities,"London, UK",74161.95,74161.95,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Technical MI Business Analyst,"London, UK",62311.06,62311.06,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Bournemouth, Dorset",49672.97,49672.97,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Corporate Broker,"Liverpool, Merseyside",49927.96,49927.96,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Interim IBA Marine Credit Control Analyst (Remote),"Glasgow, Scotland",50161.49,50161.49,2026-05-13,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Team Manager,"Chelmsford, Essex",57542.52,57542.52,2026-05-13,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Regional Account Director,"Leeds, West Yorkshire",63155.8,63155.8,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Private Clients Account Executive,"Irvine, North Ayrshire",38103.28,38103.28,2026-05-14,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Client Advisor,"Salford, Greater Manchester",41519.19,41519.19,2026-05-17,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Assistant Manager - Corporate tax,"Glasgow, Scotland",56461.95,56461.95,2026-05-22,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control - Assurance & Governance Manager,"London, UK",66372.04,66372.04,2026-05-20,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Call Centre Team Lead,"Brierley Hill, West Midlands",46960.4,46960.4,2026-05-28,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Associate Director,"London, UK",75034.85,75034.85,2026-05-28,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Business Development Executive,"London, UK",53384.96,53384.96,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Assistant Underwriter,"Guildford, Surrey",49638.36,49638.36,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Customer Service Representative,"Brierley Hill, West Midlands",37805.17,37805.17,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Manager - New to Insurance,"Brierley Hill, West Midlands",42443.93,42443.93,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,New Business Project Manager,"London, UK",57279.55,57279.55,2026-05-20,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Manager,"Birmingham, West Midlands",50558.81,50558.81,2026-05-22,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Corporate Account Manager,"Ipswich, Suffolk",55254.73,55254.73,2026-05-23,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler - Real Estate,"London, UK",49081.11,49081.11,2026-05-23,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Chichester, West Sussex",52229.18,52229.18,2026-05-13,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Development Executive,"Brierley Hill, West Midlands",40248.27,40248.27,2026-05-30,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Account Broker,"West Malling, Kent",42934.33,42934.33,2026-05-30,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Graduate Apprentice - Accountancy,"Glasgow, Scotland",30849.8,30849.8,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Risk Analytics Consultant,"London, UK",68678.65,68678.65,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,London Account Broker,"London, UK",41604.14,41604.14,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Charity Account Executive,"Manchester, Greater Manchester",45047.86,45047.86,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Birmingham, West Midlands",45496.14,45496.14,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Payroll Specialist,"Chelmsford, Essex",38076.11,38076.11,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Claims Handler,"London, UK",46326.58,46326.58,2026-05-11,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Head of Data Solutions,"London, UK",84981.53,84981.53,2026-05-30,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Desk-based Development Executive,"Leeds, West Yorkshire",37164.4,37164.4,2026-05-22,2026-06-01,,Pending Review
-New Posting,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales & Service agent,"Rugby, Warwickshire",29697.54,29697.54,2026-05-28,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Willows Green, Chelmsford",39725.19,39725.19,2026-03-15,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Deritend, Birmingham",41797.61,41797.61,2026-04-19,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive/Account Managers,"Talbot Green, Pontyclun",42437.29,42437.29,2026-04-20,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Boscombe, Bournemouth",44069.13,44069.13,2026-04-23,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Corporate Account Manager - Charities,"Deritend, Birmingham",45422.96,45422.96,2026-04-23,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Technical Assistant Manager - Aerospace,UK,52421.3,52421.3,2026-04-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Revenue Retention & Growth Tender Manager,"Willows Green, Chelmsford",50936.94,50936.94,2026-04-25,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Claims Handler,"The City, Central London",42719.42,42719.42,2026-05-04,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales & Service Consultant,"Brooklands, Sale",34633.96,34633.96,2026-05-11,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Team Manager,"Willows Green, Chelmsford",56912.88,56912.88,2026-05-14,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Executive,"Kingsham, Chichester",47253.27,47253.27,2026-05-17,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Private Clients Account Executive,"Stanecastle, Irvine",35504.71,35504.71,2026-05-17,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales and Renewals Consultant,"Eastmoor, Wakefield",41827.84,41827.84,2026-05-18,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Quarry Bank, Brierley Hill",32506.56,32506.56,2026-05-18,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Account Broker,"Kings Hill, West Malling",31237.62,31237.62,2026-05-18,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Client Advisor,"Hulme, Manchester",38594.7,38594.7,2026-05-18,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Quarry Bank, Brierley Hill",32644.47,32644.47,2026-05-21,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,New Business Project Manager,"The City, Central London",52819.55,52819.55,2026-05-21,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Aviation Insurance Broker,UK,53191.24,53191.24,2026-05-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler,"Quarry Bank, Brierley Hill",36354.45,36354.45,2026-05-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Handler - Real Estate,"The City, Central London",45259.43,45259.43,2026-05-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Corporate Account Manager,"Wherstead, Ipswich",57318.51,57318.51,2026-05-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Assistant Manager - Corporate tax,"Hillhead, Glasgow City Centre",51774.86,51774.86,2026-05-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Account Manager,"Deritend, Birmingham",46448.72,46448.72,2026-05-24,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Claims Handler,UK,35513.32,35513.32,2026-05-25,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Claims Handler,"Ormeau, Belfast",41625.57,41625.57,2026-05-25,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Senior Account Broker,"West Malling, Kent",38757.39,38757.39,2026-05-25,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control Senior Analyst & Reporting Co-ordinator,"London, UK",44781.86,44781.86,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control - Senior Associate,UK,61051.27,61051.27,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Technical MI Business Analyst,UK,58152.12,58152.12,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control Senior Analyst & Reporting Co-ordinator,UK,48526.83,48526.83,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Compliance Coordinator – Appointed Representatives and Delegated Authorities,"Aldgate, Central London",60981.91,60981.91,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Web Content Editor,"Hillhead, Glasgow City Centre",40613.45,40613.45,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,"Senior Project Manager, Marketing","Hillhead, Glasgow City Centre",45397.8,45397.8,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control - Assurance & Governance Manager,UK,61942.06,61942.06,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Risk Analytics Consultant,"The City, Central London",63330.95,63330.95,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control - Training Co-ordinator,UK,45447.79,45447.79,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Sales & Service Consultant,"Brooklands, Sale",35073.24,35073.24,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Associate Director,"The City, Central London",69192.23,69192.23,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,London Account Broker,"The City, Central London",38364.64,38364.64,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Claims Executive,"The City, Central London",42574.02,42574.02,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Graduate Apprentice - Accountancy,"Hillhead, Glasgow City Centre",29349.34,29349.34,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Head of Data Solutions,UK,79309.53,79309.53,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Head of Data Governance and Data Quality,UK,73437.38,73437.38,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control - Training Co-ordinator,"The City, Central London",44190.8,44190.8,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control Senior Analyst & Reporting Co-ordinator,"The City, Central London",47184.68,47184.68,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Operations Control - Senior Associate,"The City, Central London",59362.66,59362.66,2026-06-01,2026-06-01,,Pending Review
-Disappeared - Short-lived,SC108909,ARTHUR J. GALLAGHER INSURANCE BROKERS LIMITED,Graduate Apprentice - Accountancy,"Glasgow, Scotland",28892.48,28892.48,2026-06-01,2026-06-01,,Pending Review
-New Posting,NI031853,PRESTIGE UNDERWRITING SERVICES LIMITED,Class 1 Driver,"Withernsea, East Riding Of Yorkshire",,31137,2026-05-19,2026-06-01,,Pending Review
-New Posting,NI031853,PRESTIGE UNDERWRITING SERVICES LIMITED,Class 1 Driver,"Withernsea, East Riding Of Yorkshire",31137,31137,2026-05-19,2026-06-01,,Pending Review
-New Posting,15214809,CRUX UNDERWRITING LTD,Head of Account Management,"London, UK",54389.58,54389.58,2026-04-22,2026-06-01,,Pending Review
-New Posting,15804887,EVEREST MANAGING AGENCY LIMITED,Clinical Data Manager,UK,50154.6,50154.6,2026-05-16,2026-06-01,,Pending Review
-New Posting,15804887,EVEREST MANAGING AGENCY LIMITED,Senior Clinical Data Manager I,UK,57757.6,57757.6,2026-05-16,2026-06-01,,Pending Review
-New Posting,14778827,WAKAM UK LIMITED,Pricing Actuary/ Pricing Lead,"London, UK",89514.59,89514.59,2026-02-25,2026-06-01,,Pending Review
-New Posting,14939984,COVERYS LIMITED,Process Control Engineer,"Reedley, Burnley",28000,30000,2026-05-23,2026-06-01,,Pending Review
-New Posting,10879844,ALCHEMY UNDERWRITING LIMITED,Operations Technician/Analyst - Specialty Markets,"London, UK",63506.95,63506.95,2026-05-12,2026-06-01,,Pending Review
-New Posting,10965030,HIVE UNDERWRITERS LIMITED,Digital Communications Officer for Nusrat Ghani MP,"Borough, South East London",24874.61,24874.61,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,00501877,THE UNITED KINGDOM FREIGHT DEMURRAGE AND DEFENCE ASSOCIATION LIMITED,D365 CE Contractors - Register Here,"The Park, Nottingham",29354.44,29354.44,2024-07-18,2026-06-01,,Pending Review
+Disappeared - Short-lived,02937398,HOWDEN GROUP HOLDINGS LIMITED,Business Analyst,UK,49051.63,49051.63,2025-11-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,02937398,HOWDEN GROUP HOLDINGS LIMITED,IT AI Project Manager,UK,53292.69,53292.69,2025-11-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,02937398,HOWDEN GROUP HOLDINGS LIMITED,HR Change Manager,"London, UK",44787.71,44787.71,2026-04-12,2026-06-01,,Pending Review
+Disappeared - Short-lived,02937398,HOWDEN GROUP HOLDINGS LIMITED,Programme Manager,"London, UK",54773.57,54773.57,2026-06-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,04632146,HCC UNDERWRITING AGENCY LTD,Business Analyst – Claims Product Owner,"London, UK",57819.82,57819.82,2026-03-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,04632146,HCC UNDERWRITING AGENCY LTD,FP&A Expense Analyst,"London, UK",53790.48,53790.48,2026-03-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,04632146,HCC UNDERWRITING AGENCY LTD,Lead FP&A Expense Analyst,"London, UK",60892.12,60892.12,2026-04-03,2026-06-01,,Pending Review
+Disappeared - Short-lived,04632146,HCC UNDERWRITING AGENCY LTD,Business Analyst (Finance),"London, UK",74388.19,74388.19,2026-05-16,2026-06-01,,Pending Review
+Disappeared - Short-lived,04632146,HCC UNDERWRITING AGENCY LTD,Senior Business Analyst (Contract),"London, UK",60261.21,60261.21,2026-05-25,2026-06-01,,Pending Review
+Disappeared - Short-lived,02054592,WREN INSURANCE ASSOCIATION LIMITED(THE),Render & Digital Design Coordinator,"Hoe Hill, Barton-Upon-Humber",27106.82,27106.82,2026-05-15,2026-06-01,,Pending Review
+Disappeared - Short-lived,05051253,VITALITY HEALTH LIMITED,Senior Business Analyst 12-month FTC,"Bournemouth, Dorset",46461.66,46461.66,2026-05-15,2026-06-01,,Pending Review
+Disappeared - Short-lived,05051253,VITALITY HEALTH LIMITED,Consulting Online Executive,"Stockport, Greater Manchester",35023.34,35023.34,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,05051253,VITALITY HEALTH LIMITED,Consulting Online Sales Executive,"Stockport, Greater Manchester",36854.76,36854.76,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,Programme Manager - CRM & Telephony - Tech Transformation,"London, UK",43956.43,43956.43,2026-02-04,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,Programme Manager - Data Transformation,"London, UK",39698.53,39698.53,2026-02-08,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,Pricing Transformation Actuary,"London, UK",64947.16,64947.16,2026-03-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,Senior Internal Auditor,"London, UK",39073.7,39073.7,2026-05-19,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,Financial Planning & Analysis Manager,"London, UK",36801.27,36801.27,2026-05-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,FP&A Business Analyst - 12-month FTC,"Manchester, Greater Manchester",55071.6,55071.6,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,02590623,HISCOX SYNDICATES LIMITED,PMO Analyst - Governance and Controls,"York, North Yorkshire",39759.34,39759.34,2026-05-29,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Lippincott - Design Intern (Arabic),"London, UK",39034.38,39034.38,2026-03-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Full-Stack Engineer (Forward Deployed) - Digital Client Experience - Marsh,"London, UK",72617.6,72617.6,2026-03-27,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Technical Program Manager - UK Specialty - Marsh,"London, UK",80548.72,80548.72,2026-04-10,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Solutions Architect – Insurance - Marsh,"London, UK",71796.02,71796.02,2026-04-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Senior Technology Investment & Portfolio Lead - Marsh,"London, UK",91689.2,91689.2,2026-04-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Project Manager,UK,47234.43,47234.43,2026-04-26,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Creative Artworker,"London, UK",39608.86,39608.86,2026-04-26,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Head of Financial Lines,"London, UK",62612.47,62612.47,2026-05-06,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Associate Digital Product Owner,"London, UK",51786.52,51786.52,2026-05-07,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Oliver Wyman Actuarial – Manager – UK Life,"London, UK",64667.56,64667.56,2026-05-08,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Oliver Wyman Actuarial – Senior Consultant – UK Life,"London, UK",63377.9,63377.9,2026-05-09,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,"Oliver Wyman Actuarial, P&C Team - Capital Modellers wanted (all levels)","London, UK",61420.46,61420.46,2026-05-09,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Workforce Transformation Consulting Analyst,"London, UK",56321.21,56321.21,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Group CFO,"Manchester, Greater Manchester",200000.0,200000.0,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Group CFO,"Rusholme, Manchester",200000.0,200000.0,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Group CFO,"Hulme, Manchester",112333.2,112333.2,2026-05-15,2026-06-01,,Pending Review
+Disappeared - Short-lived,01507274,MARSH LIMITED,Forward Deployed Engineer,"The City, Central London",82637.98,82637.98,2026-05-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Corporate Broker,"Liverpool, Merseyside",49927.96,49927.96,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",36407.54,36407.54,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Customer Service and Sales consultant,"Wakefield, West Yorkshire",37611.02,37611.02,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Assistant Underwriter,"Guildford, Surrey",49638.36,49638.36,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,"Senior Project Manager, Marketing","Glasgow, Scotland",49507.59,49507.59,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",36252.8,36252.8,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Business Development Executive,"Glasgow, Scotland",45157.63,45157.63,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Executive,"Birmingham, West Midlands",45496.14,45496.14,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Payroll Specialist,"Chelmsford, Essex",38076.11,38076.11,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Sales Advisor,"Mansfield, Nottinghamshire",41070.13,41070.13,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Executive - Major Risks,"London, UK",56758.13,56758.13,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Business Development Executive,"London, UK",53384.96,53384.96,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Web Content Editor,"Glasgow, Scotland",44290.12,44290.12,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Graduate Apprentice - Accountancy,"Glasgow, Scotland",30849.8,30849.8,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Regional Account Director,"Leeds, West Yorkshire",63155.8,63155.8,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Risk Analytics Consultant,"London, UK",68678.65,68678.65,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Executive,"Sheffield, South Yorkshire",48299.03,48299.03,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Compliance Coordinator - Appointed Representatives and Delegated Authorities,"London, UK",74161.95,74161.95,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,London Account Broker,"London, UK",41604.14,41604.14,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Senior Sales Development Executive - Housing,"Chelmsford, Essex",49721.55,49721.55,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Charity Account Executive,"Manchester, Greater Manchester",45047.86,45047.86,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Handler,"Chelmsford, Essex",40164.68,40164.68,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Technical MI Business Analyst,"London, UK",62311.06,62311.06,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Revenue Retention & Growth Tender Manager,"Chelmsford, Essex",51500.52,51500.52,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Executive/Account Managers,"Pontyclun, Rhondda Cynon Taff",41448.14,41448.14,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Technical Assistant Manager - Aerospace,"London, UK",56170.32,56170.32,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Manager - New to Insurance,"Brierley Hill, West Midlands",42443.93,42443.93,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Senior Claims Handler,"London, UK",46326.58,46326.58,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Corporate Account Manager - Charities,"Birmingham, West Midlands",49442.29,49442.29,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Executive,"Bournemouth, Dorset",49672.97,49672.97,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Customer Service Representative,"Brierley Hill, West Midlands",37805.17,37805.17,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Executive,"Chichester, West Sussex",52229.18,52229.18,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Interim IBA Marine Credit Control Analyst (Remote),"Glasgow, Scotland",50161.49,50161.49,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Team Manager,"Chelmsford, Essex",57542.52,57542.52,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Private Clients Account Executive,"Irvine, North Ayrshire",38103.28,38103.28,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Client Advisor,"Salford, Greater Manchester",41519.19,41519.19,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Sales and Renewals Consultant,"Wakefield, West Yorkshire",42536.88,42536.88,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",40372.79,40372.79,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,New Business Project Manager,"London, UK",57279.55,57279.55,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Operations Control - Assurance & Governance Manager,"London, UK",66372.04,66372.04,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Assistant Manager - Corporate tax,"Glasgow, Scotland",56461.95,56461.95,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Aviation Insurance Broker,"London, UK",56995.33,56995.33,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Desk-based Development Executive,"Leeds, West Yorkshire",37164.4,37164.4,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Manager,"Birmingham, West Midlands",50558.81,50558.81,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Corporate Account Manager,"Ipswich, Suffolk",55254.73,55254.73,2026-05-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Handler - Real Estate,"London, UK",49081.11,49081.11,2026-05-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Senior Claims Handler,"Leicester, Leicestershire",43815.89,43815.89,2026-05-24,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Senior Claims Handler,"Belfast, Northern Ireland",41339.86,41339.86,2026-05-24,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Sales & Service Consultant,"Manchester, Greater Manchester",40884.43,40884.43,2026-05-25,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Claims Executive,"London, UK",46168.9,46168.9,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Sales & Service agent,"Rugby, Warwickshire",29697.54,29697.54,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Associate Director,"London, UK",75034.85,75034.85,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Call Centre Team Lead,"Brierley Hill, West Midlands",46960.4,46960.4,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Head of Data Solutions,"London, UK",84981.53,84981.53,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Development Executive,"Brierley Hill, West Midlands",40248.27,40248.27,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Senior Account Broker,"West Malling, Kent",42934.33,42934.33,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Sales & Service Consultant,"Manchester, Greater Manchester",40898.89,40898.89,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,06578719,ARTHUR J. GALLAGHER HOLDINGS (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",36099.66,36099.66,2026-06-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,09181578,APOLLO SYNDICATE MANAGEMENT LIMITED,Transformation Management Lead - Principal,"London, UK",98876.79,98876.79,2026-05-09,2026-06-01,,Pending Review
+Disappeared - Short-lived,00022215,THE UNITED KINGDOM MUTUAL STEAM SHIP ASSURANCE ASSOCIATION LIMITED,D365 CE Contractors - Register Here,"The Park, Nottingham",29354.44,29354.44,2024-07-18,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Senior Business Analyst 12-month FTC,"Bournemouth, Dorset",60000.0,60000.0,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Senior Business Analyst 12-month FTC,"Bournemouth, Dorset",46461.66,46461.66,2026-05-15,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Consulting Online Executive,"Stockport, Greater Manchester",26000.0,26000.0,2026-05-27,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Consulting Online Executive,"Bredbury, Stockport",26000.0,26000.0,2026-05-27,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Consulting Online Sales Executive,"Stockport, Greater Manchester",28000.0,28000.0,2026-05-27,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Consulting Online Executive,"Stockport, Greater Manchester",35023.34,35023.34,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Consulting Online Sales Executive,"Stockport, Greater Manchester",36854.76,36854.76,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,03319079,VITALITY LIFE LIMITED,Consulting Online Sales Executive,"Bredbury, Stockport",28000.0,28000.0,2026-05-29,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Directory Services Engineer,"York, North Yorkshire",55125.83,55125.83,2026-04-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Project Manager,"Norwich, Norfolk",74012.02,74012.02,2026-04-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,AI Specialist Developer,"Norwich, Norfolk",58656.3,58656.3,2026-04-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Data Designer,"Norwich, Norfolk",50293.84,50293.84,2026-04-29,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Principal Business Analyst,"Norwich, Norfolk",61201.38,61201.38,2026-05-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Business Analyst - Cyber Security,"Bristol, South West England",55436.77,55436.77,2026-05-07,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Technology Governance & Assurance Business Partner - Agile Transformation,"Sheffield, South Yorkshire",69030.68,69030.68,2026-05-12,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Digital Portfolio Planner and Insights Lead,"Norwich, Norfolk",56899.69,56899.69,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Lead AI Developer,"Norwich, Norfolk",61623.18,61623.18,2026-05-15,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Digital SME Trading Manager,"Bath, Bath & N E Somerset",66867.22,66867.22,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Data Engineer,"Norwich, Norfolk",58023.38,58023.38,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,AI Developer,"Norwich, Norfolk",54044.24,54044.24,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Business Analyst,"York, North Yorkshire",43494.48,43494.48,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Project Management Specialist,"Norwich, Norfolk",43553.3,43553.3,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Business Analyst - Cyber Security,"Stoke Gifford, Bristol",56719.39,56719.39,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Programme Test Manager,"Norwich, Norfolk",71703.85,71703.85,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Project Manager,"York, North Yorkshire",55310.98,55310.98,2026-05-29,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,London Market Pricing Manager,"London, UK",69128.25,69128.25,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,SC002116,AVIVA INSURANCE LIMITED,Senior Business Analyst,"Norwich, Norfolk",44011.38,44011.38,2026-06-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,00184915,CHAUCER SYNDICATES LIMITED,Data Product Delivery Associate (12 month FTC),"London, UK",87142.45,87142.45,2026-04-04,2026-06-01,,Pending Review
+Disappeared - Short-lived,00184915,CHAUCER SYNDICATES LIMITED,Data Transformation Analyst (Pricing),"London, UK",60377.59,60377.59,2026-05-16,2026-06-01,,Pending Review
+Disappeared - Short-lived,00184915,CHAUCER SYNDICATES LIMITED,Technology Delivery Manager (12 month FTC),"London, UK",76273.12,76273.12,2026-05-19,2026-06-01,,Pending Review
+Disappeared - Short-lived,00184915,CHAUCER SYNDICATES LIMITED,Transformation Change and Comms Manager,"London, UK",76901.04,76901.04,2026-05-31,2026-06-01,,Pending Review
+Disappeared - Short-lived,00204373,LLOYDS BANK GENERAL INSURANCE LIMITED,Lead AI Scientist,UK,90440.0,131450.0,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,00204373,LLOYDS BANK GENERAL INSURANCE LIMITED,Software Engineer,"London, UK",64985.14,64985.14,2026-05-21,2026-06-01,,Pending Review
+Disappeared - Short-lived,00204373,LLOYDS BANK GENERAL INSURANCE LIMITED,Technology Platform Lead - Modern Workplace,"London, UK",71650.53,71650.53,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,01007798,PINNACLE INSURANCE LIMITED,Project Manager - HV Systems,"Tremadog, Porthmadog",75000.0,80000.0,2026-04-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,01007798,PINNACLE INSURANCE LIMITED,Content &amp; Digital Communications Executive,"Holborn, Central London",44902.67,44902.67,2026-05-09,2026-06-01,,Pending Review
+Disappeared - Short-lived,01007798,PINNACLE INSURANCE LIMITED,Project Manager,"Falmer, Brighton",65000.0,75000.0,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,00973271,CANADA LIFE LIMITED,"CAO Business Initiatives Change Manager, 12 Month Fixed Term Contract - Wealth Management Europe",UK,67050.23,67050.23,2026-05-19,2026-06-01,,Pending Review
+Disappeared - Short-lived,00973271,CANADA LIFE LIMITED,Senior Business Analyst,"London, UK",54073.52,54073.52,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Corporate Broker,"Liverpool, Merseyside",49927.96,49927.96,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",36407.54,36407.54,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Customer Service and Sales consultant,"Wakefield, West Yorkshire",37611.02,37611.02,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Assistant Underwriter,"Guildford, Surrey",49638.36,49638.36,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,"Senior Project Manager, Marketing","Glasgow, Scotland",49507.59,49507.59,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",36252.8,36252.8,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Business Development Executive,"Glasgow, Scotland",45157.63,45157.63,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Executive,"Birmingham, West Midlands",45496.14,45496.14,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Payroll Specialist,"Chelmsford, Essex",38076.11,38076.11,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Sales Advisor,"Mansfield, Nottinghamshire",41070.13,41070.13,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Executive - Major Risks,"London, UK",56758.13,56758.13,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Business Development Executive,"London, UK",53384.96,53384.96,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Web Content Editor,"Glasgow, Scotland",44290.12,44290.12,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Graduate Apprentice - Accountancy,"Glasgow, Scotland",30849.8,30849.8,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Regional Account Director,"Leeds, West Yorkshire",63155.8,63155.8,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Risk Analytics Consultant,"London, UK",68678.65,68678.65,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Executive,"Sheffield, South Yorkshire",48299.03,48299.03,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Compliance Coordinator - Appointed Representatives and Delegated Authorities,"London, UK",74161.95,74161.95,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,London Account Broker,"London, UK",41604.14,41604.14,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Senior Sales Development Executive - Housing,"Chelmsford, Essex",49721.55,49721.55,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Charity Account Executive,"Manchester, Greater Manchester",45047.86,45047.86,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Handler,"Chelmsford, Essex",40164.68,40164.68,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Technical MI Business Analyst,"London, UK",62311.06,62311.06,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Revenue Retention & Growth Tender Manager,"Chelmsford, Essex",51500.52,51500.52,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Executive/Account Managers,"Pontyclun, Rhondda Cynon Taff",41448.14,41448.14,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Technical Assistant Manager - Aerospace,"London, UK",56170.32,56170.32,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Manager - New to Insurance,"Brierley Hill, West Midlands",42443.93,42443.93,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Senior Claims Handler,"London, UK",46326.58,46326.58,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Corporate Account Manager - Charities,"Birmingham, West Midlands",49442.29,49442.29,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Executive,"Bournemouth, Dorset",49672.97,49672.97,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Customer Service Representative,"Brierley Hill, West Midlands",37805.17,37805.17,2026-05-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Executive,"Chichester, West Sussex",52229.18,52229.18,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Interim IBA Marine Credit Control Analyst (Remote),"Glasgow, Scotland",50161.49,50161.49,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Team Manager,"Chelmsford, Essex",57542.52,57542.52,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Private Clients Account Executive,"Irvine, North Ayrshire",38103.28,38103.28,2026-05-14,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Client Advisor,"Salford, Greater Manchester",41519.19,41519.19,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Sales and Renewals Consultant,"Wakefield, West Yorkshire",42536.88,42536.88,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",40372.79,40372.79,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,New Business Project Manager,"London, UK",57279.55,57279.55,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Operations Control - Assurance & Governance Manager,"London, UK",66372.04,66372.04,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Assistant Manager - Corporate tax,"Glasgow, Scotland",56461.95,56461.95,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Aviation Insurance Broker,"London, UK",56995.33,56995.33,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Desk-based Development Executive,"Leeds, West Yorkshire",37164.4,37164.4,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Manager,"Birmingham, West Midlands",50558.81,50558.81,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Corporate Account Manager,"Ipswich, Suffolk",55254.73,55254.73,2026-05-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Handler - Real Estate,"London, UK",49081.11,49081.11,2026-05-23,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Senior Claims Handler,"Leicester, Leicestershire",43815.89,43815.89,2026-05-24,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Senior Claims Handler,"Belfast, Northern Ireland",41339.86,41339.86,2026-05-24,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Sales & Service Consultant,"Manchester, Greater Manchester",40884.43,40884.43,2026-05-25,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Claims Executive,"London, UK",46168.9,46168.9,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Sales & Service agent,"Rugby, Warwickshire",29697.54,29697.54,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Associate Director,"London, UK",75034.85,75034.85,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Call Centre Team Lead,"Brierley Hill, West Midlands",46960.4,46960.4,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Head of Data Solutions,"London, UK",84981.53,84981.53,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Development Executive,"Brierley Hill, West Midlands",40248.27,40248.27,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Senior Account Broker,"West Malling, Kent",42934.33,42934.33,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Sales & Service Consultant,"Manchester, Greater Manchester",40898.89,40898.89,2026-05-30,2026-06-01,,Pending Review
+Disappeared - Short-lived,01193013,ARTHUR J. GALLAGHER (UK) LIMITED,Account Handler,"Brierley Hill, West Midlands",36099.66,36099.66,2026-06-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Electrical Project Manager,"Easton, Huntingdon",60000.0,70000.0,2026-02-19,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Business Analyst,"London, UK",38410.81,38410.81,2026-04-11,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Mechanical Project Manager,"Pampisford, Cambridge",65000.0,70000.0,2026-04-16,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Programme Manager – London,"London, UK",164320.0,195000.0,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Project Manager – Renewable Energy / Heat Pump Systems,"Pampisford, Cambridge",55000.0,65000.0,2026-05-21,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Project Manager,"Cambridge, Cambridgeshire",60000.0,65000.0,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Project Manager,"Pampisford, Cambridge",60000.0,65000.0,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,01958863,ATRIUM UNDERWRITERS LIMITED,Mechanical Project Manager,"Canary Wharf, East London",75000.0,75000.0,2026-06-01,2026-06-01,,Pending Review
+Disappeared - Short-lived,12157605,BRACE UNDERWRITING LIMITED,Search Engine Optimisation,"Arlingham, Gloucester",25000.0,34000.0,2026-05-15,2026-06-01,,Pending Review
+Disappeared - Short-lived,13956051,BROWN & BROWN (EUROPE) HOLDCO LIMITED,Associate Project Manager,"London, UK",47584.29,47584.29,2026-05-13,2026-06-01,,Pending Review
+Disappeared - Short-lived,13956051,BROWN & BROWN (EUROPE) HOLDCO LIMITED,Business Case Specialist,"London, UK",40358.08,40358.08,2026-05-17,2026-06-01,,Pending Review
+Disappeared - Short-lived,13956051,BROWN & BROWN (EUROPE) HOLDCO LIMITED,Junior CRM Digital Executive,"Blackburn, Lancashire",27628.0,29122.0,2026-05-18,2026-06-01,,Pending Review
+Disappeared - Short-lived,13956051,BROWN & BROWN (EUROPE) HOLDCO LIMITED,Senior Project Manager,"Manchester, Greater Manchester",49994.86,49994.86,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,13956051,BROWN & BROWN (EUROPE) HOLDCO LIMITED,Business Case Specialist,"South East London, London",39569.71,39569.71,2026-05-25,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Relief Support Worker,"Whitechapel, East London",30160.0,,2026-03-02,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Programme Manager,"Caversham, Reading",35464.0,,2026-04-27,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Community Programme Manager,"St. Johns, Woking",31119.0,34357.0,2026-05-07,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Digital & Funding Coordinator,"Hadleigh, Benfleet",29079.0,,2026-05-09,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Programme Manager,"Rutherglen, South Lanarkshire",35463.0,,2026-05-12,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Corps Leader,"Vange, Basildon",34910.0,,2026-05-19,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Digital Asset Coordinator,"London, UK",34854.0,,2026-05-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,00101071,SALVATION ARMY GENERAL INSURANCE CORPORATION LIMITED(THE),Community Programme Manager,"Vange, Basildon",31119.0,31119.0,2026-05-28,2026-06-01,,Pending Review
+Disappeared - Short-lived,03956433,BUPA INSURANCE LIMITED,Digital Product Manager,"Brighton, East Sussex",54602.97,54602.97,2021-04-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,03956433,BUPA INSURANCE LIMITED,Head of Digital Product Delivery - Fixed Term Contract,"Brighton, East Sussex",48907.85,48907.85,2021-04-22,2026-06-01,,Pending Review
+Disappeared - Short-lived,03956433,BUPA INSURANCE LIMITED,Enterprise Architect - Secondary Care,"Central London, London",67294.75,67294.75,2025-08-08,2026-06-01,,Pending Review
+Disappeared - Short-lived,03956433,BUPA INSURANCE LIMITED,PA to Internal Audit Directors,"Central London, London",52170.34,52170.34,2026-05-20,2026-06-01,,Pending Review
+Disappeared - Short-lived,03956433,BUPA INSURANCE LIMITED,Product Manager – Digital Hospital,"South West London, London",61200.91,61200.91,2026-05-29,2026-06-01,,Pending Review
+Disappeared - Short-lived,01035198,QBE UNDERWRITING LIMITED,Senior Business Analyst,"London, UK",68211.55,68211.55,2026-05-08,2026-06-01,,Pending Review
+Disappeared - Short-lived,01035198,QBE UNDERWRITING LIMITED,Project Manager,"London, UK",61589.86,61589.86,2026-05-23,2026-06-01,,Pending Review

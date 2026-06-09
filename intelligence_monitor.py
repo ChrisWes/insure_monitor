@@ -25,6 +25,7 @@ from email.mime.text import MIMEText
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
+import anthropic
 import requests
 from dotenv import load_dotenv
 from rapidfuzz import fuzz
@@ -82,6 +83,8 @@ NEWS_KEYWORDS = [
 SIGNAL_HIGH   = 5
 SIGNAL_MEDIUM = 2
 
+LLM_MODEL = "claude-haiku-4-5-20251001"
+
 # ---------------------------------------------------------------------------
 # PATHS
 # ---------------------------------------------------------------------------
@@ -106,6 +109,7 @@ NEWS_DB_PATH      = DATA_DIR / "news_baseline.db"
 OFFICER_COLUMNS = [
     "change_type", "company_number", "company_name",
     "officer_name", "officer_role", "appointed_on", "resigned_on", "date_detected",
+    "llm_commentary",
 ]
 JOBS_COLUMNS = [
     "change_type", "company_number", "company_name",
@@ -161,6 +165,14 @@ def init_officer_db(conn: sqlite3.Connection) -> None:
             last_seen      TIMESTAMP,
             UNIQUE(company_number, officer_name, officer_role)
         );
+        CREATE TABLE IF NOT EXISTS officer_enrichment (
+            id             INTEGER PRIMARY KEY AUTOINCREMENT,
+            officer_name   TEXT NOT NULL,
+            company_number TEXT NOT NULL,
+            career_summary TEXT,
+            fetched_at     TIMESTAMP,
+            UNIQUE(officer_name, company_number)
+        );
     """)
     conn.commit()
 
@@ -215,6 +227,24 @@ def get_active_director_count(conn: sqlite3.Connection, company_number: str) -> 
         (company_number,),
     ).fetchone()
     return row[0] if row else 0
+
+
+def get_officer_enrichment(conn: sqlite3.Connection, officer_name: str, company_number: str) -> Optional[str]:
+    row = conn.execute(
+        "SELECT career_summary FROM officer_enrichment WHERE officer_name=? AND company_number=?",
+        (officer_name, company_number),
+    ).fetchone()
+    return row["career_summary"] if row else None
+
+
+def upsert_officer_enrichment(conn, officer_name, company_number, career_summary, ts):
+    conn.execute(
+        """INSERT INTO officer_enrichment (officer_name, company_number, career_summary, fetched_at)
+           VALUES (?, ?, ?, ?)
+           ON CONFLICT(officer_name, company_number) DO UPDATE SET
+               career_summary=excluded.career_summary, fetched_at=excluded.fetched_at""",
+        (officer_name, company_number, career_summary, ts),
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -422,16 +452,51 @@ def fetch_ch_officers(session, company_number, limiter, logger) -> Optional[List
         items = data.get("items", [])
         for item in items:
             all_officers.append({
-                "officer_name": str(item.get("name", "")).strip(),
-                "officer_role": str(item.get("officer_role", "")).strip(),
-                "appointed_on": item.get("appointed_on", "") or "",
-                "resigned_on":  item.get("resigned_on", "") or "",
+                "officer_name":     str(item.get("name", "")).strip(),
+                "officer_role":     str(item.get("officer_role", "")).strip(),
+                "appointed_on":     item.get("appointed_on", "") or "",
+                "resigned_on":      item.get("resigned_on", "") or "",
+                "appointments_url": (item.get("links") or {}).get("officer", {}).get("appointments", ""),
             })
         total = data.get("total_results", len(items))
         start += 100
         if start >= total:
             break
     return all_officers
+
+
+def fetch_officer_appointments(session, appointments_url, limiter, logger) -> List[Dict]:
+    """Fetch all appointments for one officer via their CH appointments URL."""
+    if not appointments_url:
+        return []
+    url = f"{CH_API_BASE}{appointments_url}"
+    resp = _ch_get(session, url, {"items_per_page": 50}, limiter, logger)
+    if resp is None or resp.status_code != 200:
+        return []
+    items = resp.json().get("items", [])
+    return [
+        {
+            "company_name":   (item.get("appointed_to") or {}).get("company_name", ""),
+            "company_number": (item.get("appointed_to") or {}).get("company_number", ""),
+            "role":           item.get("officer_role", ""),
+            "appointed_on":   item.get("appointed_on", ""),
+            "resigned_on":    item.get("resigned_on", ""),
+        }
+        for item in items
+        if (item.get("appointed_to") or {}).get("company_name")
+    ]
+
+
+def build_career_summary(appointments: List[Dict], exclude_company_number: str) -> str:
+    prior = [a for a in appointments if a["company_number"] != exclude_company_number]
+    if not prior:
+        return "No other UK registered directorships found."
+    parts = []
+    for a in prior[:5]:
+        tenure = a["appointed_on"][:4] if a["appointed_on"] else "?"
+        end    = a["resigned_on"][:4]  if a["resigned_on"]  else "present"
+        parts.append(f"{a['role'].title()} at {a['company_name']} ({tenure}–{end})")
+    return "Previously: " + "; ".join(parts)
 
 
 # ---------------------------------------------------------------------------
@@ -782,6 +847,65 @@ def write_digest(path: Path, columns: List[str], rows: List[Dict],
 
 
 # ---------------------------------------------------------------------------
+# LLM COMMENTARY
+# ---------------------------------------------------------------------------
+def generate_llm_commentary(name: str, agent: str, activity: Dict, logger: logging.Logger) -> str:
+    api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+    if not api_key:
+        return ""
+
+    lines = [
+        f"Firm: {name}" + (f" [Lloyd's managing agent: {agent}]" if agent else ""),
+        f"Active directors: {activity['director_count']}  |  "
+        f"Relevant live job postings: {activity['active_job_count']}",
+        "",
+    ]
+
+    o_changes = activity["officer_changes"]
+    if o_changes:
+        lines.append("OFFICER CHANGES:")
+        for c in o_changes:
+            senior = " [SENIOR]" if is_senior(c["officer_role"]) else ""
+            lines.append(f"  {c['change_type']}: {c['officer_name']} as {c['officer_role']}{senior}")
+            if c.get("career_summary"):
+                lines.append(f"    Background: {c['career_summary']}")
+
+    j_changes = [j for j in activity["job_changes"] if j["change_type"] == "New Posting"]
+    if j_changes:
+        lines.append("NEW JOB POSTINGS:")
+        for j in j_changes:
+            lines.append(f"  {j['job_title']} | {j['job_location']}")
+
+    n_changes = [n for n in activity["news_changes"] if n["change_type"] == "New Article"]
+    if n_changes:
+        lines.append("RECENT NEWS:")
+        for n in n_changes:
+            lines.append(
+                f"  \"{n['article_title']}\" ({n['article_source']}, {n['article_published']})"
+            )
+
+    system = (
+        "You are an insurance market intelligence analyst helping a Lloyd's broker identify "
+        "business development opportunities. Given signals about a UK insurance sector firm, "
+        "provide a brief assessment in 2-3 sentences. Focus on what the signals suggest about "
+        "the firm's direction and any BD opportunity. Be specific and concise."
+    )
+
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model=LLM_MODEL,
+            max_tokens=200,
+            system=system,
+            messages=[{"role": "user", "content": "\n".join(lines)}],
+        )
+        return msg.content[0].text.strip()
+    except Exception as exc:
+        logger.warning("LLM commentary failed for %s: %s", name, exc)
+        return ""
+
+
+# ---------------------------------------------------------------------------
 # EMAIL
 # ---------------------------------------------------------------------------
 def send_email(
@@ -867,6 +991,8 @@ def send_email(
                     ct = c["change_type"].upper()
                     senior = "  [SENIOR]" if is_senior(c["officer_role"]) else ""
                     lines.append(f"    {ct:<20}  {c['officer_name']}  |  {c['officer_role']}{senior}")
+                    if c.get("career_summary"):
+                        lines.append(f"                          {c['career_summary']}")
 
             active_jobs = activity.get("active_job_count", 0)
             new_jobs    = [j for j in j_changes if j["change_type"] == "New Posting"]
@@ -893,6 +1019,10 @@ def send_email(
                         f'    - "{n["article_title"]}"'
                         f'  --  {n["article_source"]}, {n["article_published"]}'
                     )
+
+            commentary = activity.get("llm_commentary", "")
+            if commentary:
+                lines.append(f"  Assessment: {commentary}")
 
         lines.append("")
 
@@ -1022,6 +1152,25 @@ def main() -> None:
             officer_conn.commit()
             if not o_changes:
                 logger.info("  Officers: no changes")
+            # Enrich new appointments with career history
+            for change in o_changes:
+                if change["change_type"] != "New Appointment":
+                    continue
+                cached = get_officer_enrichment(officer_conn, change["officer_name"], ch_num)
+                if cached is not None:
+                    change["career_summary"] = cached
+                    continue
+                appt_url = next(
+                    (o["appointments_url"] for o in api_officers
+                     if o["officer_name"] == change["officer_name"]),
+                    "",
+                )
+                appts   = fetch_officer_appointments(ch_session, appt_url, ch_limiter, logger)
+                summary = build_career_summary(appts, ch_num)
+                change["career_summary"] = summary
+                upsert_officer_enrichment(officer_conn, change["officer_name"], ch_num, summary, ts)
+                officer_conn.commit()
+                logger.info("  Enrichment: %s — %s", change["officer_name"], summary[:80])
 
         # ---- Jobs (Adzuna) ----
         j_first = jobs_is_first_run(jobs_conn, ch_num)
@@ -1175,6 +1324,24 @@ def main() -> None:
             "signal":           signal,
             "score":            score,
         }
+
+    # -------------------------------------------------------------------------
+    # LLM COMMENTARY — generate "so what" assessment per firm with activity
+    # -------------------------------------------------------------------------
+    if os.getenv("ANTHROPIC_API_KEY", "").strip():
+        logger.info("Generating LLM commentary for %d firm(s)...", len(company_activity))
+        for ch_num, activity in company_activity.items():
+            commentary = generate_llm_commentary(
+                activity["name"], activity["agent"], activity, logger
+            )
+            activity["llm_commentary"] = commentary
+    else:
+        logger.info("ANTHROPIC_API_KEY not set — skipping LLM commentary")
+
+    # Annotate officer change rows with per-firm LLM commentary for CSV output
+    for change in all_officer_changes:
+        ch_num = change["company_number"]
+        change["llm_commentary"] = company_activity.get(ch_num, {}).get("llm_commentary", "")
 
     write_digest(OFFICER_DIGEST, OFFICER_COLUMNS, all_officer_changes,
                  "No officer changes detected", logger)

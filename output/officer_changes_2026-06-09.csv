@@ -1,8 +1,2 @@
-﻿change_type,company_number,company_name,officer_name,officer_role,appointed_on,resigned_on,date_detected
-Resignation,00078768,"CORNISH MUTUAL ASSURANCE COMPANY,LIMITED","OATEY, Jeremy Paul",director,2014-07-01,2026-06-01,2026-06-09
-New Appointment,01302663,BRIDGE SPECIALTY INTERNATIONAL LIMITED,"BEARD, Steven Mark",director,2026-06-08,,2026-06-09
-Resignation,06948515,ARCH MANAGING AGENCY LIMITED,"STOREY, Patrick Desmond",director,2020-04-30,2026-06-04,2026-06-09
-Resignation,04977362,ARCH INSURANCE (UK) LIMITED,"STOREY, Patrick Desmond",director,2017-04-01,2026-06-04,2026-06-09
-New Appointment,01102951,R.A. COWEN & PARTNERS LIMITED,"KING, Melanie Suzanne",director,2026-06-08,,2026-06-09
-New Appointment,00361687,TRENT INSURANCE COMPANY LIMITED,"MCARTHUR, Anne Mary",secretary,2026-06-01,,2026-06-09
-Resignation,07770177,INEVEXCO LTD,"BLAIR, Mark Edward",director,2018-03-01,2026-06-08,2026-06-09
+﻿change_type,company_number,company_name,officer_name,officer_role,appointed_on,resigned_on,date_detected,llm_commentary
+No officer changes detected,,,,,,,2026-06-09,

@@ -30,6 +30,17 @@ import requests
 from dotenv import load_dotenv
 from rapidfuzz import fuzz
 
+from director_intelligence import (
+    build_director_intelligence,
+    extract_officer_id,
+    flatten_for_csv,
+    get_director_profile,
+    init_director_db,
+    is_profile_stale,
+    load_clients,
+    store_director_profile,
+)
+
 # ---------------------------------------------------------------------------
 # CONFIGURATION
 # ---------------------------------------------------------------------------
@@ -94,9 +105,11 @@ DATA_DIR   = SCRIPT_DIR / "data"
 OUTPUT_DIR = SCRIPT_DIR / "output"
 LOGS_DIR   = SCRIPT_DIR / "logs"
 
-FIRMS_CSV        = INPUT_DIR / "firms.csv"
-OFFICER_DB_PATH  = DATA_DIR / "officer_baseline.db"
-JOBS_DB_PATH     = DATA_DIR / "jobs_baseline.db"
+FIRMS_CSV           = INPUT_DIR / "firms.csv"
+CLIENTS_CSV         = INPUT_DIR / "clients.csv"
+OFFICER_DB_PATH     = DATA_DIR / "officer_baseline.db"
+JOBS_DB_PATH        = DATA_DIR / "jobs_baseline.db"
+DIRECTOR_DB_PATH    = DATA_DIR / "director_intelligence.db"
 
 TODAY             = date.today().isoformat()
 OFFICER_DIGEST    = OUTPUT_DIR / f"officer_changes_{TODAY}.csv"
@@ -109,6 +122,8 @@ NEWS_DB_PATH      = DATA_DIR / "news_baseline.db"
 OFFICER_COLUMNS = [
     "change_type", "company_number", "company_name",
     "officer_name", "officer_role", "appointed_on", "resigned_on", "date_detected",
+    "digital_background", "digital_roles", "client_connections",
+    "watchlist_connections", "concurrent_watchlist",
     "llm_commentary",
 ]
 JOBS_COLUMNS = [
@@ -867,7 +882,19 @@ def generate_llm_commentary(name: str, agent: str, activity: Dict, logger: loggi
         for c in o_changes:
             senior = " [SENIOR]" if is_senior(c["officer_role"]) else ""
             lines.append(f"  {c['change_type']}: {c['officer_name']} as {c['officer_role']}{senior}")
-            if c.get("career_summary"):
+            intel = c.get("director_intel")
+            if intel:
+                if intel.get("career_summary"):
+                    lines.append(f"    Career: {intel['career_summary']}")
+                if intel.get("digital_background"):
+                    dig = "; ".join(intel["digital_roles"][:3])
+                    lines.append(f"    Digital transformation background: {dig}")
+                for cc in intel.get("client_connections", [])[:3]:
+                    status = "current" if cc["is_current"] else f"until {cc['resigned_on'][:7]}" if cc["resigned_on"] else "former"
+                    lines.append(f"    CLIENT CONNECTION: {cc['officer_role'].title()} at {cc['company_name']} ({status})")
+                for cc in intel.get("concurrent_watchlist", [])[:3]:
+                    lines.append(f"    CONCURRENT POSITION: Also active as {cc['officer_role'].title()} at {cc['company_name']}")
+            elif c.get("career_summary"):
                 lines.append(f"    Background: {c['career_summary']}")
 
     j_changes = [j for j in activity["job_changes"] if j["change_type"] == "New Posting"]
@@ -888,7 +915,9 @@ def generate_llm_commentary(name: str, agent: str, activity: Dict, logger: loggi
         "You are an insurance market intelligence analyst helping a Lloyd's broker identify "
         "business development opportunities. Given signals about a UK insurance sector firm, "
         "provide a brief assessment in 2-3 sentences. Focus on what the signals suggest about "
-        "the firm's direction and any BD opportunity. Be specific and concise."
+        "the firm's direction and any BD opportunity. If a newly appointed director has a "
+        "digital transformation background or connections to existing client firms, treat these "
+        "as high-priority signals and explain specifically why. Be specific and concise."
     )
 
     try:
@@ -991,7 +1020,19 @@ def send_email(
                     ct = c["change_type"].upper()
                     senior = "  [SENIOR]" if is_senior(c["officer_role"]) else ""
                     lines.append(f"    {ct:<20}  {c['officer_name']}  |  {c['officer_role']}{senior}")
-                    if c.get("career_summary"):
+                    intel = c.get("director_intel")
+                    if intel:
+                        if intel.get("career_summary"):
+                            lines.append(f"                          {intel['career_summary']}")
+                        if intel.get("digital_background"):
+                            dig = "; ".join(intel["digital_roles"][:2])
+                            lines.append(f"                          *** DIGITAL BACKGROUND: {dig}")
+                        for cc in intel.get("client_connections", [])[:3]:
+                            status = "current" if cc["is_current"] else f"until {cc['resigned_on'][:7]}" if cc["resigned_on"] else "former"
+                            lines.append(f"                          *** CLIENT: {cc['officer_role'].title()} at {cc['company_name']} ({status})")
+                        for cc in intel.get("concurrent_watchlist", [])[:3]:
+                            lines.append(f"                          *** CONCURRENT: Also active at {cc['company_name']} ({cc['officer_role'].title()})")
+                    elif c.get("career_summary"):
                         lines.append(f"                          {c['career_summary']}")
 
             active_jobs = activity.get("active_job_count", 0)
@@ -1093,6 +1134,24 @@ def main() -> None:
 
     logger.info("Loaded %d firms from %s", len(firms), FIRMS_CSV.name)
 
+    # Build watchlist lookup sets from firms.csv
+    watchlist_numbers: Set[str] = set()
+    watchlist_names:   Dict[str, str] = {}
+    for row in firms:
+        num = row.get(FIRMS_NUMBER_COLUMN, "").strip()
+        if num:
+            num = num.zfill(8) if num.isdigit() else num
+            watchlist_numbers.add(num)
+            watchlist_names[num] = row.get(FIRMS_NAME_COLUMN, "")
+
+    # Load client list (exported from HubSpot into input/clients.csv)
+    client_names    = load_clients(CLIENTS_CSV)
+    client_numbers  = set(client_names.keys())
+    if client_names:
+        logger.info("Loaded %d clients from %s", len(client_names), CLIENTS_CSV.name)
+    else:
+        logger.info("No clients.csv found — client connection matching disabled")
+
     DATA_DIR.mkdir(exist_ok=True)
     officer_conn = sqlite3.connect(OFFICER_DB_PATH)
     officer_conn.row_factory = sqlite3.Row
@@ -1101,6 +1160,10 @@ def main() -> None:
     jobs_conn = sqlite3.connect(JOBS_DB_PATH)
     jobs_conn.row_factory = sqlite3.Row
     init_jobs_db(jobs_conn)
+
+    director_conn = sqlite3.connect(DIRECTOR_DB_PATH)
+    director_conn.row_factory = sqlite3.Row
+    init_director_db(director_conn)
 
     ch_session     = build_ch_session(ch_api_key)
     adzuna_session = build_adzuna_session()
@@ -1152,25 +1215,75 @@ def main() -> None:
             officer_conn.commit()
             if not o_changes:
                 logger.info("  Officers: no changes")
-            # Enrich new appointments with career history
+            # Enrich new appointments with director intelligence
             for change in o_changes:
                 if change["change_type"] != "New Appointment":
-                    continue
-                cached = get_officer_enrichment(officer_conn, change["officer_name"], ch_num)
-                if cached is not None:
-                    change["career_summary"] = cached
                     continue
                 appt_url = next(
                     (o["appointments_url"] for o in api_officers
                      if o["officer_name"] == change["officer_name"]),
                     "",
                 )
-                appts   = fetch_officer_appointments(ch_session, appt_url, ch_limiter, logger)
-                summary = build_career_summary(appts, ch_num)
-                change["career_summary"] = summary
-                upsert_officer_enrichment(officer_conn, change["officer_name"], ch_num, summary, ts)
-                officer_conn.commit()
-                logger.info("  Enrichment: %s — %s", change["officer_name"], summary[:80])
+                officer_id = extract_officer_id(appt_url)
+
+                # Try director DB first (avoids repeat CH calls; shares data across firms)
+                profile = get_director_profile(director_conn, officer_id) if officer_id else None
+
+                if profile is None or is_profile_stale(profile):
+                    appts = fetch_officer_appointments(ch_session, appt_url, ch_limiter, logger)
+                    if officer_id and appts is not None:
+                        profile = store_director_profile(
+                            director_conn, officer_id, change["officer_name"],
+                            appts, watchlist_numbers, client_numbers, ts,
+                        )
+                    elif appts:
+                        # No officer_id — fall back to simple text summary cached in officer_enrichment
+                        summary = build_career_summary(appts, ch_num)
+                        change["career_summary"] = summary
+                        upsert_officer_enrichment(
+                            officer_conn, change["officer_name"], ch_num, summary, ts
+                        )
+                        officer_conn.commit()
+                        logger.info("  Enrichment (no ID): %s — %s",
+                                    change["officer_name"], summary[:80])
+                        continue
+
+                if profile:
+                    intel = build_director_intelligence(
+                        profile, ch_num, watchlist_names, client_names
+                    )
+                    change["director_intel"] = intel
+                    change["career_summary"] = intel["career_summary"]
+
+                    # Flatten to CSV-safe fields
+                    change.update(flatten_for_csv(intel))
+
+                    # Log notable findings
+                    if intel["digital_background"]:
+                        logger.info(
+                            "  Director Intel [DIGITAL]: %s — %s",
+                            change["officer_name"],
+                            "; ".join(intel["digital_roles"][:2]),
+                        )
+                    if intel["client_connections"]:
+                        logger.warning(
+                            "  Director Intel [CLIENT CONNECTION]: %s previously at %s",
+                            change["officer_name"],
+                            ", ".join(c["company_name"] for c in intel["client_connections"]),
+                        )
+                    if intel["concurrent_watchlist"]:
+                        logger.warning(
+                            "  Director Intel [CONCURRENT]: %s also active at %s",
+                            change["officer_name"],
+                            ", ".join(c["company_name"] for c in intel["concurrent_watchlist"]),
+                        )
+                    logger.info("  Director Intel: %s — %s",
+                                change["officer_name"], intel["career_summary"][:80])
+                else:
+                    # Absolute fallback: check legacy cache, otherwise skip
+                    cached = get_officer_enrichment(officer_conn, change["officer_name"], ch_num)
+                    if cached:
+                        change["career_summary"] = cached
 
         # ---- Jobs (Adzuna) ----
         j_first = jobs_is_first_run(jobs_conn, ch_num)
@@ -1226,6 +1339,7 @@ def main() -> None:
 
     officer_conn.close()
     jobs_conn.close()
+    director_conn.close()
 
     # -------------------------------------------------------------------------
     # PASS 2 — NEWS (NewsAPI, priority-sorted, daily budget capped)

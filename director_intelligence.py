@@ -235,6 +235,10 @@ def store_director_profile(
 
     for appt in appointments:
         comp_num = (appt.get("company_number") or "").strip()
+        # CH appointments API returns company numbers without zero-padding; normalise
+        # to match the zero-padded format used in firms.csv and watchlist_numbers.
+        if comp_num.isdigit():
+            comp_num = comp_num.zfill(8)
         role     = (appt.get("role") or appt.get("officer_role") or "").strip()
         is_cur   = 1 if not appt.get("resigned_on") else 0
         is_watch = 1 if comp_num in watchlist_numbers else 0

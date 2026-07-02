@@ -23,6 +23,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
+from collections import defaultdict
 from typing import Dict, List, Optional, Tuple
 
 import anthropic
@@ -863,6 +864,73 @@ def write_digest(path: Path, columns: List[str], rows: List[Dict],
 
 
 # ---------------------------------------------------------------------------
+# CROSS-FIRM APPOINTMENT DETECTION
+# ---------------------------------------------------------------------------
+
+def collect_cross_firm_appointments(all_officer_changes: List[Dict]) -> List[Dict]:
+    """Find directors appointed at 2+ monitored firms in the same run.
+
+    Returns a list of alert dicts sorted by firm count descending.
+    """
+    by_officer: Dict[str, List[Dict]] = defaultdict(list)
+    for c in all_officer_changes:
+        if c["change_type"] == "New Appointment":
+            by_officer[c["officer_name"].lower()].append(c)
+
+    alerts = []
+    for _, changes in by_officer.items():
+        if len(changes) < 2:
+            continue
+        roles = list({c["officer_role"] for c in changes})
+        alerts.append({
+            "officer_name":  changes[0]["officer_name"],
+            "role":          roles[0] if len(roles) == 1 else " / ".join(roles),
+            "firm_count":    len(changes),
+            "firms":         [
+                {"company_name": c["company_name"], "company_number": c["company_number"]}
+                for c in changes
+            ],
+            "llm_commentary": "",
+        })
+
+    alerts.sort(key=lambda a: a["firm_count"], reverse=True)
+    return alerts
+
+
+def generate_cross_firm_commentary(
+    officer_name: str, role: str, firms: List[Dict], logger: logging.Logger
+) -> str:
+    api_key = os.getenv("ANTHROPIC_API_KEY", "").strip()
+    if not api_key:
+        return ""
+
+    firm_list = "\n".join(f"  - {f['company_name']}" for f in firms)
+    prompt = (
+        f"Director: {officer_name} ({role.title()})\n"
+        f"Simultaneously appointed to {len(firms)} UK insurance sector companies:\n"
+        f"{firm_list}\n\n"
+        "In 2-3 sentences: what does this simultaneous multi-company appointment "
+        "signal about group strategy, and what is the BD opportunity for a Lloyd's broker?"
+    )
+    system = (
+        "You are an insurance market intelligence analyst helping a Lloyd's broker "
+        "identify business development opportunities. Be specific and concise."
+    )
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        msg = client.messages.create(
+            model=LLM_MODEL,
+            max_tokens=150,
+            system=system,
+            messages=[{"role": "user", "content": prompt}],
+        )
+        return msg.content[0].text.strip()
+    except Exception as exc:
+        logger.warning("Cross-firm LLM commentary failed for %s: %s", officer_name, exc)
+        return ""
+
+
+# ---------------------------------------------------------------------------
 # LLM COMMENTARY
 # ---------------------------------------------------------------------------
 def generate_llm_commentary(name: str, agent: str, activity: Dict, logger: logging.Logger) -> str:
@@ -943,6 +1011,7 @@ def send_email(
     job_changes: List[Dict],
     news_changes: List[Dict],
     company_activity: Dict[str, Dict],
+    cross_firm_alerts: List[Dict],
     stats: Dict,
     logger: logging.Logger,
 ) -> None:
@@ -988,6 +1057,22 @@ def send_email(
         f"API errors (Adzuna)  : {stats['adzuna_errors']}",
         "",
     ]
+
+    if cross_firm_alerts:
+        lines.append("CROSS-FIRM APPOINTMENT ALERTS")
+        lines.append("=" * 60)
+        lines.append("The following director(s) were appointed at multiple monitored firms simultaneously.")
+        lines.append("")
+        for alert in cross_firm_alerts:
+            firms_str = ", ".join(f["company_name"] for f in alert["firms"])
+            lines.append(
+                f"  {alert['officer_name']}  |  {alert['role'].title()}"
+                f"  |  {alert['firm_count']} firms"
+            )
+            lines.append(f"  Firms: {firms_str}")
+            if alert.get("llm_commentary"):
+                lines.append(f"  Assessment: {alert['llm_commentary']}")
+            lines.append("")
 
     if total_changes and company_activity:
         lines.append("COMPANIES WITH ACTIVITY")
@@ -1441,6 +1526,23 @@ def main() -> None:
         }
 
     # -------------------------------------------------------------------------
+    # CROSS-FIRM ALERTS — directors appearing at 2+ firms in this run
+    # -------------------------------------------------------------------------
+    cross_firm_alerts = collect_cross_firm_appointments(all_officer_changes)
+    if cross_firm_alerts:
+        logger.info(
+            "Cross-firm appointments detected: %d director(s) across multiple firms",
+            len(cross_firm_alerts),
+        )
+        for alert in cross_firm_alerts:
+            logger.warning(
+                "  CROSS-FIRM: %s appointed at %d firms: %s",
+                alert["officer_name"],
+                alert["firm_count"],
+                ", ".join(f["company_name"] for f in alert["firms"]),
+            )
+
+    # -------------------------------------------------------------------------
     # LLM COMMENTARY — generate "so what" assessment per firm with activity
     # -------------------------------------------------------------------------
     if os.getenv("ANTHROPIC_API_KEY", "").strip():
@@ -1450,6 +1552,10 @@ def main() -> None:
                 activity["name"], activity["agent"], activity, logger
             )
             activity["llm_commentary"] = commentary
+        for alert in cross_firm_alerts:
+            alert["llm_commentary"] = generate_cross_firm_commentary(
+                alert["officer_name"], alert["role"], alert["firms"], logger
+            )
     else:
         logger.info("ANTHROPIC_API_KEY not set — skipping LLM commentary")
 
@@ -1491,7 +1597,7 @@ def main() -> None:
     logger.info("Adzuna API errors    : %d", adzuna_errors)
     logger.info("=" * 60)
 
-    send_email(all_officer_changes, all_job_changes, all_news_changes, company_activity, stats, logger)
+    send_email(all_officer_changes, all_job_changes, all_news_changes, company_activity, cross_firm_alerts, stats, logger)
 
 
 if __name__ == "__main__":

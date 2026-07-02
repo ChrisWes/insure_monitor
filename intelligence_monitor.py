@@ -100,6 +100,7 @@ LLM_MODEL = "claude-haiku-4-5-20251001"
 # PATHS
 # ---------------------------------------------------------------------------
 SCRIPT_DIR = Path(__file__).resolve().parent
+VERSION    = (SCRIPT_DIR / "VERSION").read_text().strip()
 INPUT_DIR  = SCRIPT_DIR / "input"
 DATA_DIR   = SCRIPT_DIR / "data"
 OUTPUT_DIR = SCRIPT_DIR / "output"
@@ -968,12 +969,12 @@ def send_email(
 
     if total_changes:
         subject = (
-            f"Intelligence Monitor: {total_changes} signal(s) — {TODAY}  "
+            f"Intelligence Monitor v{VERSION}: {total_changes} signal(s) — {TODAY}  "
             f"({stats['officer_new']} appointments, {stats['officer_resigned']} resignations, "
             f"{stats['job_new']} new postings, {stats['news_new']} news articles)"
         )
     else:
-        subject = f"Intelligence Monitor: No changes — {TODAY}"
+        subject = f"Intelligence Monitor v{VERSION}: No changes — {TODAY}"
 
     lines = [
         f"Intelligence Monitor — {TODAY}",

@@ -391,7 +391,7 @@ def send_weekly_email(
     recipients  = [a.strip() for a in email_to_raw.split(",") if a.strip()]
     known_rows  = [r for r in all_rows if r["known_firm"] == "Yes"]
     subject     = (
-        f"Discovery Report: {len(new_rows)} new firm(s), "
+        f"UK | Discovery Report: {len(new_rows)} new firm(s), "
         f"{len(known_rows)} known firm event(s) — {WEEK_STR}"
     )
 

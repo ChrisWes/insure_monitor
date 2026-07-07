@@ -1038,12 +1038,12 @@ def send_email(
 
     if total_changes:
         subject = (
-            f"Intelligence Monitor v{VERSION}: {total_changes} signal(s) — {TODAY}  "
+            f"UK | Intelligence Monitor v{VERSION}: {total_changes} signal(s) — {TODAY}  "
             f"({stats['officer_new']} appointments, {stats['officer_resigned']} resignations, "
             f"{stats['job_new']} new postings, {stats['news_new']} news articles)"
         )
     else:
-        subject = f"Intelligence Monitor v{VERSION}: No changes — {TODAY}"
+        subject = f"UK | Intelligence Monitor v{VERSION}: No changes — {TODAY}"
 
     lines = [
         f"Intelligence Monitor — {TODAY}",

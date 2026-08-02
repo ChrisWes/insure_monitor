@@ -1,0 +1,5 @@
+﻿change_type,company_number,company_name,job_title,job_location,salary_min,salary_max,posted_date,date_detected,lloyds_managing_agent,monitoring_status
+New Posting,02628062,ST. JAMES'S PLACE UK PLC,Senior Business Analyst,"Monument, Central London",58565.86,58565.86,2026-08-01,2026-08-02,,Pending Review
+New Posting,02837811,HISCOX PLC,Portfolio Management Analyst,"York, North Yorkshire",44086.74,44086.74,2026-08-01,2026-08-02,,Pending Review
+Disappeared,02837811,HISCOX PLC,Senior Internal Auditor,"London, UK",39073.7,39073.7,2026-05-19,2026-08-02,,Pending Review
+Disappeared - Short-lived,02837811,HISCOX PLC,Portfolio Management Analyst,"London, UK",45499.53,45499.53,2026-07-11,2026-08-02,,Pending Review
